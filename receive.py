@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import pika
 
+credentials = pika.PlainCredentials(username='guest', password='guest')
 connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
+    pika.ConnectionParameters(host='localhost', '5672', credentials=credentials))
 channel = connection.channel()
 
 channel.queue_declare(queue='teste')
